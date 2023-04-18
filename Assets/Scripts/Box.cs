@@ -5,7 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     private Color startColor;
-    private Color endColor = new Color(0.5f, 0.5f, 0.5f);
+    private Color endColor = new Color(2.55f, 2.55f, 2.55f);
     
     
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class Box : MonoBehaviour
     
     void update()
     {
-        RaycastHit2D hit1 = Raycast(transform.position, Vector2.left, 1.5f);
+        RaycastHit2D hit1 = Raycast(transform.position, Vector2.left, 0.8f);
         RaycastHit2D hit2 = Raycast(transform.position, Vector2.right, 0.8f);
         RaycastHit2D hit3 = Raycast(transform.position, Vector2.up, 0.8f);
         RaycastHit2D hit4 = Raycast(transform.position, Vector2.down, 0.8f);
@@ -26,7 +26,7 @@ public class Box : MonoBehaviour
     
     public bool CanMove(Vector2 d)
     {
-        RaycastHit2D hit = Raycast((Vector2) d*0.5f, d, 0.8f);
+        RaycastHit2D hit = Raycast((Vector2) d*0.4f, d, 0.7f);
         if(!hit || hit.collider.tag=="Target"){
             transform.Translate(d);
             return true;

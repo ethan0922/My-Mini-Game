@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
-            moveDirection = Vector2.right;
+            moveDirection = Vector2.right * 1.28f;
         if(Input.GetKeyDown(KeyCode.LeftArrow))
-            moveDirection = Vector2.left;
+            moveDirection = Vector2.left * 1.28f;
         if(Input.GetKeyDown(KeyCode.UpArrow))
-            moveDirection = Vector2.up;
+            moveDirection = Vector2.up * 1.28f;
         if(Input.GetKeyDown(KeyCode.DownArrow))
-            moveDirection = Vector2.down;
+            moveDirection = Vector2.down * 1.28f;
         if(moveDirection != Vector2.zero && CanMove(moveDirection)){
             transform.Translate(moveDirection);
         }
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     
     private bool CanMove(Vector2 d)
     {
-        RaycastHit2D hit = Raycast(Vector2.zero, d, 1.0f, detectLayer);
+        RaycastHit2D hit = Raycast(Vector2.zero, d, 1.28f, detectLayer);
         if(!hit) return true;
         if(hit && hit.collider.GetComponent<Box>() != null) return hit.collider.GetComponent<Box>().CanMove(d); 
         else return false;

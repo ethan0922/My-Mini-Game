@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
     void Start()
     {
         startColor = GetComponent<SpriteRenderer>().color;
-        FindObjectOfType<GameManager>().totalBoxes ++;
+        if(this.CompareTag("Target")) FindObjectOfType<GameManager>().totalBoxes ++;
     }
     
     void update()
@@ -37,7 +37,7 @@ public class Box : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Target"))
+        if( collision.CompareTag("Target") || this.CompareTag("Target") )
         {
             GetComponent<SpriteRenderer>().color = endColor;
             FindObjectOfType<GameManager>().doneBoxes++;
@@ -48,7 +48,7 @@ public class Box : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Target"))
+        if( collision.CompareTag("Target") || this.CompareTag("Target") )
         {
             FindObjectOfType<GameManager>().doneBoxes--;
             GetComponent<SpriteRenderer>().color = startColor;
